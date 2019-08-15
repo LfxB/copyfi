@@ -1,0 +1,12 @@
+.main-container {
+    position: relative;
+    z-index: 0;
+    background-color: rgb(255, 255, 255);
+    min-height: 100vh;
+    padding-bottom: 60px;
+}
+
+.children-container {
+    margin: 0 auto;
+    width: 50vw;
+}
