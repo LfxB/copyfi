@@ -92,7 +92,14 @@ export default class Copy extends React.Component {
       let index = 0;
 
       let playlistInfo = await getPlaylistInfo(token, playlistToCopy);
-      console.log("Playlist Info", playlistInfo);
+      //   console.log("Playlist Info", playlistInfo);
+
+      if (playlistInfo.error) {
+        this.setState({
+          error: true
+        });
+        return;
+      }
 
       // Create new playlist with the same name
       let newPlaylist = await createPlaylist(
@@ -101,7 +108,14 @@ export default class Copy extends React.Component {
         playlistInfo.name,
         playlistInfo.description
       );
-      console.log("New playlist", newPlaylist);
+      //   console.log("New playlist", newPlaylist);
+
+      if (newPlaylist.error) {
+        this.setState({
+          error: true
+        });
+        return;
+      }
 
       // Get playlist tracks only allow 100 at a time.
       // The spotify api kindly provides a 'next' property with a url
@@ -114,7 +128,7 @@ export default class Copy extends React.Component {
         index++;
       } while (next);
 
-      console.log(tracks);
+      //   console.log(tracks);
 
       // 'Add tracks to playlists' only allows 100 tracks at a time
       for (let i = 0; i < tracks.length; i++) {
@@ -129,10 +143,13 @@ export default class Copy extends React.Component {
         );
 
         if (returnedData.error) {
-          console.log("Something went wrong!", returnedData);
-          break;
+          //   console.log("Something went wrong!", returnedData);
+          this.setState({
+            error: true
+          });
+          return;
         }
-        console.log(`Added track set ${i + 1} of ${tracks.length}`);
+        // console.log(`Added track set ${i + 1} of ${tracks.length}`);
       }
 
       this.setState({
