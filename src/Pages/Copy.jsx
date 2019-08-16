@@ -10,9 +10,8 @@ import {
   addTracksToPlaylist
 } from "Helpers/spotify";
 import MainContainer from "Components/MainContainer";
+import Loading from "Components/Loading";
 import SomethingWentWrong from "Components/SomethingWentWrong";
-
-import Spinner from "Assets/green-spinner-200px.svg";
 
 import "./Copy.css";
 
@@ -178,11 +177,7 @@ export default class Copy extends React.Component {
     }
 
     if (!currentUser || isCopying) {
-      return (
-        <MainContainer>
-          <img className="green-spinner" src={Spinner} alt={"Loading..."} />
-        </MainContainer>
-      );
+      return <Loading />;
     }
 
     if (copyCompleted) {
