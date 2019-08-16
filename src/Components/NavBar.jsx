@@ -1,53 +1,62 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
+import React from "react";
+import { NavLink } from "react-router-dom";
 
-import './NavBar.css'
+import "./NavBar.css";
 
 export default class NavBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            navbarClassName: "navbar-ul"
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      navbarClassName: "main-nav"
+    };
+  }
 
-    toggleResponsiveMenu = () => {
-        const { navbarClassName } = this.state;
-        if (navbarClassName === "navbar-ul") {
-            this.setState({
-                navbarClassName: "navbar-ul responsive"
-            })
-        } else {
-            this.setState({
-                navbarClassName: "navbar-ul"
-            })
-        }
+  toggleResponsiveMenu = () => {
+    const { navbarClassName } = this.state;
+    if (navbarClassName === "main-nav") {
+      this.setState({
+        navbarClassName: "main-nav navbar-mobile"
+      });
+    } else {
+      this.setState({
+        navbarClassName: "main-nav"
+      });
     }
+  };
 
-    render = () => {
-        const { navbarClassName } = this.state;
-        return (
-            <React.Fragment>
-                <ul className={navbarClassName}>
-                    <li>
-                        <Link className="navbar-active" to="/">
-                            <i className="material-icons navbar-icon">book</i>
-                            COPIFY
-                        </Link>
-                    </li>
-                    <li>
-                        <a href="https://open.spotify.com/browse">
-                            <i className="material-icons navbar-icon">swap_horiz</i>
-                            Go to Spotify
-                        </a>
-                    </li>
-                    <li className="navbar-menu-button">
-                        <button onClick={this.toggleResponsiveMenu}>
-                            <i className="material-icons navbar-icon">menu</i>
-                        </button>
-                    </li>
-                </ul>
-            </React.Fragment>
-        )
-    }
+  render = () => {
+    const { navbarClassName } = this.state;
+    return (
+      <nav className="navbar">
+        <span className="navbar-toggle" onClick={this.toggleResponsiveMenu}>
+          <i className="material-icons">menu</i>
+        </span>
+        <NavLink to="/" className="logo">
+          copyfi
+        </NavLink>
+        <ul className={navbarClassName}>
+          <li>
+            <a
+              href="https://open.spotify.com"
+              className="nav-links"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Go To Spotify
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/LfxB/copyfi"
+              className="nav-links"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Source
+            </a>
+          </li>
+        </ul>
+      </nav>
+    );
+  };
 }
