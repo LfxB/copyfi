@@ -1,9 +1,16 @@
 .main-container {
   position: relative;
   z-index: 0;
-  background-color: rgb(255, 255, 255);
   min-height: 100vh;
   padding-bottom: 60px;
+  color: white;
+  background-color: #191414;
+  background-image: linear-gradient(
+      to right bottom,
+      rgb(34, 46, 51),
+      rgb(0, 0, 0)
+    ),
+    linear-gradient(transparent, rgb(0, 0, 0) 70%);
 }
 
 .children-container {
