@@ -1,8 +1,8 @@
 const authEndpoint = "https://accounts.spotify.com/authorize";
 
-const clientId = "cfa196a5dac044e48e7b749920224934";
+const clientId = process.env.REACT_APP_CLIENT_ID;
 
-const redirectUri = "https://copyfi.netlify.com/copy";
+const redirectUri = process.env.REACT_APP_REDIRECT_URI;
 
 const scopes = [
   "playlist-modify-public",
