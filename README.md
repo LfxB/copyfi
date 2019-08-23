@@ -1,3 +1,30 @@
 # COPYFI
 
+![Website](https://img.shields.io/website/https/copyfi.netlify.com.svg?style=popout-square)
+
 A Web App to copy Spotify playlists to your account.
+
+Currently deployed on [copyfi.netlify.com](https://copyfi.netlify.com/).
+
+## Contributing
+
+Clone this repository.
+
+Before you can code, you will need a Spotify account and do a bit of setting up.
+
+Go to the [Spotify Developers](https://developer.spotify.com/dashboard) page and log in. Click on `Create a client ID` or `Create an App` (they do the same thing). Fill in the form and submit. You will be redirected to a new page where you can see your new app's Client ID. The Client Secret is not required for this application.
+
+### Setting up the Developer Environment
+
+The Client ID and Redirect URI that is passed to the Spotify API should be stored as environment variables.
+
+After cloning this repo, create a file called `.env.development.local` in the root directory, containing the following:
+
+```js
+REACT_APP_CLIENT_ID=INSERT_YOUR_CLIENT_ID_HERE
+REACT_APP_REDIRECT_URI='http://localhost:3000/copy'
+```
+
+Replace `INSERT_YOUR_CLIENT_ID_HERE` with your actual client ID.
+
+Now you can start coding. Feel free to create a Pull Request!
