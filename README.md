@@ -21,10 +21,12 @@ The Client ID and Redirect URI that is passed to the Spotify API should be store
 After cloning this repo, create a file called `.env.development.local` in the root directory, containing the following:
 
 ```js
-REACT_APP_CLIENT_ID=INSERT_YOUR_CLIENT_ID_HERE
-REACT_APP_REDIRECT_URI='http://localhost:3000/copy'
+REACT_APP_CLIENT_ID = INSERT_YOUR_CLIENT_ID_HERE;
+REACT_APP_REDIRECT_URI = "http://localhost:3000/copy";
 ```
 
 Replace `INSERT_YOUR_CLIENT_ID_HERE` with your actual client ID.
+
+Replace the Redirect URI as well to match your local server address, if necessary. Also note that you must add it to your Spotify app's Redirect URI white-list as well; you can find it in the your app's dashboard page under `Edit Settings`.
 
 Now you can start coding. Feel free to create a Pull Request!
