@@ -59,7 +59,6 @@ export default class Copy extends React.Component {
     let dispatch = this.context[1];
 
     let userData = await getCurrentUserProfile(token);
-    // console.log(userData);
 
     if (userData.error) {
       this.setState({
@@ -103,7 +102,6 @@ export default class Copy extends React.Component {
       let index = 0;
 
       let playlistInfo = await getPlaylistInfo(token, playlistToCopy);
-      //   console.log("Playlist Info", playlistInfo);
 
       if (playlistInfo.error) {
         this.setState({
@@ -120,7 +118,6 @@ export default class Copy extends React.Component {
         playlistInfo.name,
         playlistInfo.description
       );
-      //   console.log("New playlist", newPlaylist);
 
       if (newPlaylist.error) {
         this.setState({
@@ -145,19 +142,12 @@ export default class Copy extends React.Component {
         }
 
         next = data.next;
-        // tracks = tracks.concat(data.items);
         tracks[index] = data.items;
         index++;
       } while (next);
 
-      //   console.log(tracks);
-
       // 'Add tracks to playlists' only allows 100 tracks at a time
       for (let i = 0; i < tracks.length; i++) {
-        // let tracklist = tracks[i].map(item => {
-        //   return item.track.uri;
-        // });
-
         let tracklist = tracks[i].reduce((result, item) => {
           if (!item.is_local) {
             result.push(item.track.uri);
@@ -172,14 +162,12 @@ export default class Copy extends React.Component {
         );
 
         if (returnedData.error) {
-          //   console.log("Something went wrong!", returnedData);
           this.setState({
             error: true,
             errorMsg: JSON.stringify(returnedData, null, 4)
           });
           return;
         }
-        // console.log(`Added track set ${i + 1} of ${tracks.length}`);
       }
 
       this.setState({
