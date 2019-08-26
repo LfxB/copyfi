@@ -23,6 +23,7 @@ export default class Copy extends React.Component {
 
     this.state = {
       error: false,
+      errorMsg: "",
       currentUser: "",
       playlistToCopy: "",
       isCopying: false,
@@ -49,7 +50,8 @@ export default class Copy extends React.Component {
 
     if (!token) {
       this.setState({
-        error: true
+        error: true,
+        errorMsg: "No access token returned by Spotify. Please try again later."
       });
     }
 
@@ -58,6 +60,15 @@ export default class Copy extends React.Component {
 
     let userData = await getCurrentUserProfile(token);
     // console.log(userData);
+
+    if (userData.error) {
+      this.setState({
+        error: true,
+        errorMsg: JSON.stringify(userData)
+      });
+      return;
+    }
+
     this.setState({
       currentUser: userData
     });
@@ -96,7 +107,8 @@ export default class Copy extends React.Component {
 
       if (playlistInfo.error) {
         this.setState({
-          error: true
+          error: true,
+          errorMsg: JSON.stringify(playlistInfo)
         });
         return;
       }
@@ -112,7 +124,8 @@ export default class Copy extends React.Component {
 
       if (newPlaylist.error) {
         this.setState({
-          error: true
+          error: true,
+          errorMsg: JSON.stringify(newPlaylist)
         });
         return;
       }
@@ -122,6 +135,15 @@ export default class Copy extends React.Component {
       // to get the next 100 tracks.
       do {
         data = await getPlaylistTracks(token, playlistToCopy, next);
+
+        if (data.error) {
+          this.setState({
+            error: true,
+            errorMsg: JSON.stringify(data)
+          });
+          return;
+        }
+
         next = data.next;
         // tracks = tracks.concat(data.items);
         tracks[index] = data.items;
@@ -145,7 +167,8 @@ export default class Copy extends React.Component {
         if (returnedData.error) {
           //   console.log("Something went wrong!", returnedData);
           this.setState({
-            error: true
+            error: true,
+            errorMsg: JSON.stringify(returnedData)
           });
           return;
         }
@@ -182,6 +205,7 @@ export default class Copy extends React.Component {
   render = () => {
     const {
       error,
+      errorMsg,
       currentUser,
       playlistToCopy,
       isCopying,
@@ -190,7 +214,7 @@ export default class Copy extends React.Component {
     } = this.state;
 
     if (error) {
-      return <SomethingWentWrong />;
+      return <SomethingWentWrong message={errorMsg} />;
     }
 
     if (!currentUser || isCopying) {
