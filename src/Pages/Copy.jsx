@@ -154,9 +154,16 @@ export default class Copy extends React.Component {
 
       // 'Add tracks to playlists' only allows 100 tracks at a time
       for (let i = 0; i < tracks.length; i++) {
-        let tracklist = tracks[i].map(item => {
-          return item.track.uri;
-        });
+        // let tracklist = tracks[i].map(item => {
+        //   return item.track.uri;
+        // });
+
+        let tracklist = tracks[i].reduce((result, item) => {
+          if (!item.is_local) {
+            result.push(item.track.uri);
+          }
+          return result;
+        }, []);
 
         let returnedData = await addTracksToPlaylist(
           token,
