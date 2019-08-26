@@ -78,7 +78,7 @@ export const createPlaylist = async (token, userId, name, description) => {
 };
 
 export const getPlaylistInfo = async (token, playlistId) => {
-  let url = `https://api.spotify.com/v1/playlists/${playlistId}?fields=fields%3Dhref%2Cname%2C%2Cdescription`;
+  let url = `https://api.spotify.com/v1/playlists/${playlistId}?fields=fields%3Dhref%2Cname%2Cdescription`;
   let response = await fetch(url, {
     method: "GET",
     headers: new Headers({
