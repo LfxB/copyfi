@@ -64,7 +64,7 @@ export default class Copy extends React.Component {
     if (userData.error) {
       this.setState({
         error: true,
-        errorMsg: JSON.stringify(userData)
+        errorMsg: JSON.stringify(userData, null, 4)
       });
       return;
     }
@@ -108,7 +108,7 @@ export default class Copy extends React.Component {
       if (playlistInfo.error) {
         this.setState({
           error: true,
-          errorMsg: JSON.stringify(playlistInfo)
+          errorMsg: JSON.stringify(playlistInfo, null, 4)
         });
         return;
       }
@@ -125,7 +125,7 @@ export default class Copy extends React.Component {
       if (newPlaylist.error) {
         this.setState({
           error: true,
-          errorMsg: JSON.stringify(newPlaylist)
+          errorMsg: JSON.stringify(newPlaylist, null, 4)
         });
         return;
       }
@@ -139,7 +139,7 @@ export default class Copy extends React.Component {
         if (data.error) {
           this.setState({
             error: true,
-            errorMsg: JSON.stringify(data)
+            errorMsg: JSON.stringify(data, null, 4)
           });
           return;
         }
@@ -168,7 +168,7 @@ export default class Copy extends React.Component {
           //   console.log("Something went wrong!", returnedData);
           this.setState({
             error: true,
-            errorMsg: JSON.stringify(returnedData)
+            errorMsg: JSON.stringify(returnedData, null, 4)
           });
           return;
         }
