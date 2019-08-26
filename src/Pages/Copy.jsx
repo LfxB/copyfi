@@ -92,7 +92,8 @@ export default class Copy extends React.Component {
         return;
       }
 
-      playlistToCopy = playlistToCopyArr.pop();
+      // Split on ? in case there are query params in the pasted url
+      playlistToCopy = playlistToCopyArr.pop().split("?")[0];
 
       const [{ token }] = this.context;
 
