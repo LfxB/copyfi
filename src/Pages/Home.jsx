@@ -1,8 +1,8 @@
-import React from "react";
-import MainContainer from "Components/MainContainer";
-import { authLink } from "Helpers/spotify";
+import React from 'react';
+import MainContainer from 'Components/MainContainer';
+import { authLink } from 'Helpers/spotify';
 
-import "./Home.css";
+import './Home.css';
 
 export default class Home extends React.Component {
   render = () => {
@@ -23,7 +23,7 @@ export default class Home extends React.Component {
           </p>
           <h3>Want to contribute?</h3>
           <p>
-            You can find the source of this web app{" "}
+            You can find the source of this web app{' '}
             <a href="https://github.com/LfxB/copyfi">here</a>. You can also
             inform me of any issues there.
           </p>

@@ -1,25 +1,25 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-import "./NavBar.css";
+import './NavBar.css';
 
 export default class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      navbarClassName: "main-nav"
+      navbarClassName: 'main-nav'
     };
   }
 
   toggleResponsiveMenu = () => {
     const { navbarClassName } = this.state;
-    if (navbarClassName === "main-nav") {
+    if (navbarClassName === 'main-nav') {
       this.setState({
-        navbarClassName: "main-nav navbar-mobile"
+        navbarClassName: 'main-nav navbar-mobile'
       });
     } else {
       this.setState({
-        navbarClassName: "main-nav"
+        navbarClassName: 'main-nav'
       });
     }
   };
