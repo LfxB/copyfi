@@ -201,7 +201,7 @@ export default class Copy extends React.Component {
       };
     }
 
-    return data.context.external_urls.spotify;
+    return data.context.external_urls.spotify.substr(8);
   };
 
   onChangePlaylistToCopy = e => {
@@ -271,9 +271,9 @@ export default class Copy extends React.Component {
       <MainContainer>
         <div className="copy-container">
           <div className="copy-centered">
-            <h1>{`Welcome, ${currentUser.id}`}</h1>
+            <h1>{`Welcome, ${currentUser.id}!`}</h1>
             <form className="copy-form" onSubmit={this.onFormSubmit}>
-              <h3>Playlist link</h3>
+              <h3>Playlist link:</h3>
               <input
                 required
                 className="copy-form-link-input"
