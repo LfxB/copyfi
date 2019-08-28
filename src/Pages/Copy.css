@@ -28,6 +28,18 @@
 .copy-form-link-input {
   height: 40px;
   text-align: center;
+  color: #ffffff;
+  background: transparent;
+  border-left-style: none;
+  border-right-style: none;
+  border-top-style: none;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: #c06ecf;
+}
+
+.copy-form-link-input:focus {
+  outline: none;
 }
 
 .copy-form-submit {
