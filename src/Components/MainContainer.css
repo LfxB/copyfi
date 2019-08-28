@@ -16,7 +16,6 @@
 .children-container {
   margin: 0 auto;
   width: 95vw;
-  height: calc(100vh - 130px);
 }
 
 @media only screen and (min-width: 768px) {
