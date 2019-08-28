@@ -8,7 +8,8 @@ const scopes = [
   'playlist-modify-public',
   'playlist-modify-private',
   'user-read-email',
-  'user-read-private'
+  'user-read-private',
+  'user-read-playback-state'
 ];
 
 const makeid = length => {
@@ -121,4 +122,24 @@ export const addTracksToPlaylist = async (token, playlistId, tracklist) => {
   );
   let data = await response.json();
   return data;
+};
+
+export const getCurrentPlaybackInfo = async token => {
+  let response = await fetch('https://api.spotify.com/v1/me/player', {
+    method: 'GET',
+    headers: new Headers({
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`
+    })
+  });
+
+  if (!response.ok) {
+    return {
+      error: true
+    };
+  }
+
+  return response.text().then(text => {
+    return text ? JSON.parse(text) : { error: true };
+  });
 };

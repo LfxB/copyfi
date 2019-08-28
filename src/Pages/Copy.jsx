@@ -7,7 +7,8 @@ import {
   createPlaylist,
   getPlaylistInfo,
   getPlaylistTracks,
-  addTracksToPlaylist
+  addTracksToPlaylist,
+  getCurrentPlaybackInfo
 } from 'Helpers/spotify';
 import MainContainer from 'Components/MainContainer';
 import Loading from 'Components/Loading';
@@ -68,8 +69,11 @@ export default class Copy extends React.Component {
       return;
     }
 
+    let currentPlaylist = await this.getCurrentPlayingPlaylist(token);
+
     this.setState({
-      currentUser: userData
+      currentUser: userData,
+      playlistToCopy: currentPlaylist.error ? '' : currentPlaylist
     });
 
     dispatch(setToken(token));
@@ -183,15 +187,35 @@ export default class Copy extends React.Component {
     });
   };
 
+  getCurrentPlayingPlaylist = async token => {
+    let data = await getCurrentPlaybackInfo(token);
+
+    if (
+      !data ||
+      data.error ||
+      !data.context ||
+      data.context.type !== 'playlist'
+    ) {
+      return {
+        error: true
+      };
+    }
+
+    return data.context.external_urls.spotify;
+  };
+
   onChangePlaylistToCopy = e => {
     this.setState({
       playlistToCopy: e.target.value
     });
   };
 
-  onReset = () => {
+  onReset = async () => {
+    const [{ token }] = this.context;
+    let currentPlaylist = await this.getCurrentPlayingPlaylist(token);
+
     this.setState({
-      playlistToCopy: '',
+      playlistToCopy: currentPlaylist.error ? '' : currentPlaylist,
       isCopying: false,
       copyCompleted: false,
       newPlaylistUrl: ''
