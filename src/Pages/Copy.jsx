@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 import { StateContext } from 'State';
 import { setToken } from 'Modules/token';
 import { getHashFragment, hideHashFragment } from 'Helpers/hash';
@@ -71,6 +72,10 @@ export default class Copy extends React.Component {
 
     let currentPlaylist = await this.getCurrentPlayingPlaylist(token);
 
+    if (!currentPlaylist.error) {
+      toast("Auto-filled the playlist you're currently listening to!");
+    }
+
     this.setState({
       currentUser: userData,
       playlistToCopy: currentPlaylist.error ? '' : currentPlaylist
@@ -89,9 +94,8 @@ export default class Copy extends React.Component {
 
       if (playlistToCopyArr.length === 0) {
         alert(
-          "Your 'Playlist to copy' link isn't in the right format. Should look like this: " +
-            placeholder +
-            ''
+          "Your Playlist link isn't in the right format. Should look like this: " +
+            placeholder
         );
         return;
       }
@@ -116,6 +120,8 @@ export default class Copy extends React.Component {
         return;
       }
 
+      toast('Retrieved playlist');
+
       // Create new playlist with the same name
       let newPlaylist = await createPlaylist(
         token,
@@ -132,6 +138,8 @@ export default class Copy extends React.Component {
         return;
       }
 
+      toast(`Created new playlist ${playlistInfo.name}`);
+
       // Get playlist tracks only allow 100 at a time.
       // The spotify api kindly provides a 'next' property with a url
       // to get the next 100 tracks.
@@ -145,6 +153,8 @@ export default class Copy extends React.Component {
           });
           return;
         }
+
+        toast(`Gathered track set ${index + 1}`);
 
         next = data.next;
         tracks[index] = data.items;
@@ -173,7 +183,13 @@ export default class Copy extends React.Component {
           });
           return;
         }
+
+        toast(`Added track set ${i + 1} of ${tracks.length}`);
       }
+
+      toast.success('Playlist created!', {
+        autoClose: 5000
+      });
 
       this.setState({
         isCopying: false,
@@ -213,6 +229,10 @@ export default class Copy extends React.Component {
   onReset = async () => {
     const [{ token }] = this.context;
     let currentPlaylist = await this.getCurrentPlayingPlaylist(token);
+
+    if (!currentPlaylist.error) {
+      toast("Auto-filled the playlist you're currently listening to!");
+    }
 
     this.setState({
       playlistToCopy: currentPlaylist.error ? '' : currentPlaylist,

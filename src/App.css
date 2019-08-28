@@ -1,0 +1,17 @@
+.toast-class {
+  background: rgb(19, 19, 19);
+}
+
+.toast-class button {
+  color: #ffffff;
+}
+
+.toast-body {
+  font-size: 20px;
+  font-family: monospace;
+  color: #ffffff;
+}
+
+.toast-progress {
+  background: linear-gradient(to right, #d634f3, #c06ecf);
+}
