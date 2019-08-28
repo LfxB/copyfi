@@ -1,4 +1,5 @@
 .navbar {
+  grid-area: nav;
   font-size: 18px;
   background-image: linear-gradient(260deg, #2376ae80 0%, #c06ecf7e 100%);
   border: 1px solid rgba(0, 0, 0, 0.2);
