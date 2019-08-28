@@ -1,7 +1,20 @@
+#background-div {
+  position: fixed;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  background-color: #191414;
+  background-image: linear-gradient(
+      to right bottom,
+      rgb(34, 46, 51),
+      rgb(0, 0, 0)
+    ),
+    linear-gradient(transparent, rgb(0, 0, 0) 70%);
+}
+
 .main-container {
   position: relative;
   z-index: 0;
-  /* padding-bottom: 60px; */
   display: grid;
   grid-template-areas:
     'nav nav nav'
@@ -11,13 +24,6 @@
   grid-gap: 10px;
   height: 100vh;
   color: white;
-  background-color: #191414;
-  background-image: linear-gradient(
-      to right bottom,
-      rgb(34, 46, 51),
-      rgb(0, 0, 0)
-    ),
-    linear-gradient(transparent, rgb(0, 0, 0) 70%);
 }
 
 .children-container {

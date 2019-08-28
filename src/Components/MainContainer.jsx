@@ -9,6 +9,7 @@ export default class MainContainer extends React.Component {
       <div className="main-container">
         <NavBar />
         <div className="children-container">{this.props.children}</div>
+        <div id="background-div"></div>
       </div>
     );
   };
