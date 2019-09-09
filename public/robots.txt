@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /copy
+Sitemap: https://copyfi.netlify.com/sitemap.xml
