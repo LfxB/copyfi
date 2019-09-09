@@ -11,9 +11,9 @@ export default class Home extends React.Component {
         <div className="home-container">
           <h1>Copyfi App</h1>
           <p>
-            Copyfi is an application that can copy any public playlist to your
-            account, where you have full control. It's great for retrieving
-            playlists from an old or lost account!
+            Copyfi is an application that can copy any Spotify playlist to your
+            Spotify account, where you have full control. It's great for
+            retrieving playlists from an old or lost account!
           </p>
           <h3>Spotify Access</h3>
           <p>
