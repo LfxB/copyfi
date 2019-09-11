@@ -30,7 +30,8 @@ export default class Copy extends React.Component {
       playlistToCopy: '',
       isCopying: false,
       copyCompleted: false,
-      newPlaylistUrl: ''
+      newPlaylistUrl: '',
+      urlInDescription: true
     };
   }
 
@@ -88,7 +89,7 @@ export default class Copy extends React.Component {
     e.preventDefault();
 
     setTimeout(async () => {
-      let { currentUser, playlistToCopy } = this.state;
+      let { currentUser, playlistToCopy, urlInDescription } = this.state;
 
       let playlistToCopyArr = playlistToCopy.split('/').filter(Boolean);
 
@@ -122,12 +123,16 @@ export default class Copy extends React.Component {
 
       toast('Retrieved playlist');
 
+      let descriptionUrl = urlInDescription
+        ? ` - Originally copied from open.spotify.com\\playlist\\${playlistToCopy}`
+        : '';
+
       // Create new playlist with the same name
       let newPlaylist = await createPlaylist(
         token,
         currentUser.id,
         playlistInfo.name,
-        playlistInfo.description
+        playlistInfo.description + descriptionUrl
       );
 
       if (newPlaylist.error) {
@@ -242,6 +247,16 @@ export default class Copy extends React.Component {
     });
   };
 
+  handleInputChange = event => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  };
+
   render = () => {
     const {
       error,
@@ -250,7 +265,8 @@ export default class Copy extends React.Component {
       playlistToCopy,
       isCopying,
       copyCompleted,
-      newPlaylistUrl
+      newPlaylistUrl,
+      urlInDescription
     } = this.state;
 
     if (error) {
@@ -302,6 +318,15 @@ export default class Copy extends React.Component {
                 value={playlistToCopy}
                 placeholder={placeholder}
               />
+              <label className="copy-form-checkbox-label">
+                <input
+                  name="urlInDescription"
+                  type="checkbox"
+                  checked={urlInDescription}
+                  onChange={this.handleInputChange}
+                />
+                <span>Append playlist URL to new playlist</span>
+              </label>
               <input
                 className="copy-form-submit btn-link"
                 type="submit"
