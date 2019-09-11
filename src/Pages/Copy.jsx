@@ -325,7 +325,7 @@ export default class Copy extends React.Component {
                   checked={urlInDescription}
                   onChange={this.handleInputChange}
                 />
-                <span>Append playlist URL to new playlist</span>
+                <span>Append playlist URL to new playlist description</span>
               </label>
               <input
                 className="copy-form-submit btn-link"
