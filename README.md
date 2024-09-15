@@ -4,7 +4,7 @@
 
 A Web App to copy Spotify playlists to your account.
 
-Currently deployed on [copyfi.netlify.com](https://copyfi.netlify.com/).
+Currently deployed on [copyfi.netlify.app](https://copyfi.netlify.app/).
 
 ## Contributing
 
