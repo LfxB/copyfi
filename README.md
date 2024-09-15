@@ -1,6 +1,6 @@
 # COPYFI
 
-![Website](https://img.shields.io/website/https/copyfi.netlify.com.svg?style=popout-square)
+![Website](https://img.shields.io/website/https/copyfi.netlify.app.svg?style=popout-square)
 
 A Web App to copy Spotify playlists to your account.
 
